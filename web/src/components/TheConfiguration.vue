@@ -1,4 +1,24 @@
 <template>
+  <a-menu
+    v-model:selectedKeys="current.key"
+    mode="horizontal"
+    style="justify-content: flex-end; margin-bottom: 20px"
+  >
+    <a-sub-menu key="sub">
+      <template #icon>
+        <TranslationOutlined />
+      </template>
+      <template #title>{{ current.label }}</template>
+      <a-menu-item
+        v-for="lang in languages"
+        :key="lang.key"
+        @click="langClick(lang.key, lang.label)"
+      >
+        {{ lang.label }}
+      </a-menu-item>
+    </a-sub-menu>
+  </a-menu>
+
   <a-form :model="config" :label-col="labelCol" :wrapper-col="wrapperCol">
     <a-form-item :label="t('config-label.source')">
       <a-input v-model:value="config.source" />
@@ -234,15 +254,16 @@
     </a-form-item>
     <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
       <a-button type="primary" @click="onSubmit">{{ t('btn.generate-config') }}</a-button>
-      <a-button style="margin-left: 10px">{{ t('btn.reset-config') }}</a-button>
+      <a-button style="margin-left: 10px" @click="onReset">{{ t('btn.reset-config') }}</a-button>
     </a-form-item>
   </a-form>
 </template>
 
 <script setup lang="ts">
-import { reactive, toRaw } from 'vue'
+import { reactive, ref, toRaw } from 'vue'
 import { useI18n } from 'vue-i18n'
 import AlgorithmSelect from '../components/AlgorithmSelect.vue'
+import { TranslationOutlined } from '@ant-design/icons-vue'
 
 const config = reactive({
   source: 'rs://127.0.0.1:8105',
@@ -338,7 +359,24 @@ function onRandPermChange(e: any) {
   return false
 }
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const labelCol = { style: { width: '350px' } }
 const wrapperCol = { span: 14 }
+
+function onReset(e: any) {
+  console.log('reset')
+}
+
+const languages = reactive([
+  { key: 'en', label: 'English' },
+  { key: 'zh-CN', label: '简体中文' }
+])
+
+const current = ref({ key: ['en'], label: 'English' })
+
+function langClick(key: string, label: string) {
+  locale.value = key
+  current.value.label = label
+  console.log(locale.value)
+}
 </script>
