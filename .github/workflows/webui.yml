@@ -1,0 +1,47 @@
+# This workflow will build a golang project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
+
+name: WebUI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+    strategy:
+      matrix:
+        go: [ '1.20' ]
+        os: [ 'ubuntu-latest', 'windows-latest', 'macos-latest' ]
+        node-version: [ 18.x ]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: ${{ matrix.go }}
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Build
+        run: chmod +x ./scripts/build.sh && ./scripts/build.sh
+        if: matrix.os != 'windows-latest'
+
+      - name: Build On Windows
+        run: scripts\build.bat
+        if: matrix.os == 'windows-latest'
+
+      - name: Test
+        run: go test -v -race ./... -coverprofile=coverage.txt -covermode=atomic -timeout=10m
+
+      - name: Codecov
+        uses: codecov/codecov-action@v3
+        if: matrix.os == 'ubuntu-latest'
