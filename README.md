@@ -14,5 +14,6 @@ $ scripts\build.bat
 On Linux
 
 ```bash
-$ ./scripts/build.sh
+$ chmod +x ./scripts/build.sh && ./scripts/build.sh
+
 ```
