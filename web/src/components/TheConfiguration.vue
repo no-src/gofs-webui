@@ -222,22 +222,22 @@
     <a-form-item :label="t('config-label.encrypt')">
       <a-switch v-model:checked="config.encrypt" />
     </a-form-item>
-    <a-form-item :label="t('config-label.encrypt_path')">
+    <a-form-item :label="t('config-label.encrypt_path')" v-if="config.encrypt">
       <a-input v-model:value="config.encrypt_path" />
     </a-form-item>
-    <a-form-item :label="t('config-label.encrypt_secret')">
+    <a-form-item :label="t('config-label.encrypt_secret')" v-if="config.encrypt">
       <a-input v-model:value="config.encrypt_secret" />
     </a-form-item>
     <a-form-item :label="t('config-label.decrypt')">
       <a-switch v-model:checked="config.decrypt" />
     </a-form-item>
-    <a-form-item :label="t('config-label.decrypt_path')">
+    <a-form-item :label="t('config-label.decrypt_path')" v-if="config.decrypt">
       <a-input v-model:value="config.decrypt_path" />
     </a-form-item>
-    <a-form-item :label="t('config-label.decrypt_secret')">
+    <a-form-item :label="t('config-label.decrypt_secret')" v-if="config.decrypt">
       <a-input v-model:value="config.decrypt_secret" />
     </a-form-item>
-    <a-form-item :label="t('config-label.decrypt_out')">
+    <a-form-item :label="t('config-label.decrypt_out')" v-if="config.decrypt">
       <a-input v-model:value="config.decrypt_out" />
     </a-form-item>
     <a-form-item :label="t('config-label.task_conf')">
@@ -246,10 +246,10 @@
     <a-form-item :label="t('config-label.task_client')">
       <a-switch v-model:checked="config.task_client" />
     </a-form-item>
-    <a-form-item :label="t('config-label.task_client_labels')">
+    <a-form-item :label="t('config-label.task_client_labels')" v-if="config.task_client">
       <a-input v-model:value="config.task_client_labels" />
     </a-form-item>
-    <a-form-item :label="t('config-label.task_client_max_worker')">
+    <a-form-item :label="t('config-label.task_client_max_worker')" v-if="config.task_client">
       <a-input-number v-model:value="config.task_client_max_worker" />
     </a-form-item>
     <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
