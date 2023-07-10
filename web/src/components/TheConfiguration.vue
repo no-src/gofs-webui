@@ -260,10 +260,11 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, toRaw } from 'vue'
+import { computed, reactive, ref, toRaw } from 'vue'
 import { useI18n } from 'vue-i18n'
 import AlgorithmSelect from '../components/AlgorithmSelect.vue'
 import { TranslationOutlined } from '@ant-design/icons-vue'
+import { useLocate } from '../stores/locale'
 
 const config = reactive({
   source: 'rs://127.0.0.1:8105',
@@ -359,7 +360,7 @@ function onRandPermChange(e: any) {
   return false
 }
 
-const { t, locale } = useI18n()
+const { t } = useI18n()
 const labelCol = { style: { width: '350px' } }
 const wrapperCol = { span: 14 }
 
@@ -367,16 +368,13 @@ function onReset(e: any) {
   console.log('reset')
 }
 
-const languages = reactive([
-  { key: 'en', label: 'English' },
-  { key: 'zh-CN', label: '简体中文' }
-])
-
-const current = ref({ key: ['en'], label: 'English' })
+const localeStore = useLocate()
+const languages = reactive(localeStore.all())
+const current = computed(() => {
+  return { key: [localeStore.get().key], label: localeStore.get().label }
+})
 
 function langClick(key: string, label: string) {
-  locale.value = key
-  current.value.label = label
-  console.log(locale.value)
+  localeStore.set(key, label)
 }
 </script>
