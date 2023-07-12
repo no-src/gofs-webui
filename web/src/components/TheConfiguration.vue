@@ -264,7 +264,7 @@ import { computed, reactive, ref, toRaw } from 'vue'
 import { useI18n } from 'vue-i18n'
 import AlgorithmSelect from '../components/AlgorithmSelect.vue'
 import { TranslationOutlined } from '@ant-design/icons-vue'
-import { useLocate } from '../stores/locale'
+import { useLocale } from '../stores/locale'
 
 const config = reactive({
   source: 'rs://127.0.0.1:8105',
@@ -368,7 +368,7 @@ function onReset(e: any) {
   console.log('reset')
 }
 
-const localeStore = useLocate()
+const localeStore = useLocale()
 const languages = reactive(localeStore.all())
 const current = computed(() => {
   return { key: [localeStore.get().key], label: localeStore.get().label }
