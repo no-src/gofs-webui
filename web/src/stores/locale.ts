@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { useI18n } from 'vue-i18n'
-import { allLocaleDesc, defaultLocale, Locale } from '@/locales/locales'
+import { allLocales, defaultLocale, Locale } from '@/locales/locales'
 
 export const useLocale = defineStore('locale', () => {
   const currentLocale = ref(defaultLocale)
@@ -11,14 +11,14 @@ export const useLocale = defineStore('locale', () => {
     return currentLocale.value
   }
 
-  function set(key: string, label: string) {
-    currentLocale.value.key = key
-    currentLocale.value.label = label
-    locale.value = key
+  function set(name: string, desc: string) {
+    currentLocale.value.name = name
+    currentLocale.value.desc = desc
+    locale.value = name
   }
 
   function all(): Locale[] {
-    return allLocaleDesc
+    return allLocales
   }
 
   return { get, set, all }

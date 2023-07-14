@@ -1,24 +1,30 @@
 import en from './res/en.json'
 import zhCN from './res/zh-CN.json'
+import { createI18n } from 'vue-i18n'
 
 export class Locale {
-  key: string
-  label: string
+  name: string
+  desc: string
 
-  constructor(key: string, label: string) {
-    this.key = key
-    this.label = label
+  constructor(name: string, desc: string) {
+    this.name = name
+    this.desc = desc
   }
 }
 
 export const defaultLocale = new Locale('en', 'English')
 
-export const allLocaleContent = {
-  en: en,
-  'zh-CN': zhCN
-}
-
-export const allLocaleDesc = [
-  { key: 'en', label: 'English' },
-  { key: 'zh-CN', label: '简体中文' }
+export const allLocales: Locale[] = [
+  { name: 'en', desc: 'English' },
+  { name: 'zh-CN', desc: '简体中文' }
 ]
+
+export const i18n = createI18n<false>({
+  legacy: false,
+  locale: defaultLocale.name,
+  fallbackLocale: defaultLocale.name,
+  messages: {
+    en: en,
+    'zh-CN': zhCN
+  }
+})

@@ -10,11 +10,11 @@
       </template>
       <template #title>{{ current.label }}</template>
       <a-menu-item
-        v-for="lang in languages"
-        :key="lang.key"
-        @click="langClick(lang.key, lang.label)"
+        v-for="locale in locales"
+        :key="locale.name"
+        @click="localeClick(locale.name, locale.desc)"
       >
-        {{ lang.label }}
+        {{ locale.desc }}
       </a-menu-item>
     </a-sub-menu>
   </a-menu>
@@ -369,12 +369,12 @@ function onReset(e: any) {
 }
 
 const localeStore = useLocale()
-const languages = reactive(localeStore.all())
+const locales = reactive(localeStore.all())
 const current = computed(() => {
-  return { key: [localeStore.get().key], label: localeStore.get().label }
+  return { key: [localeStore.get().name], label: localeStore.get().desc }
 })
 
-function langClick(key: string, label: string) {
-  localeStore.set(key, label)
+function localeClick(name: string, desc: string) {
+  localeStore.set(name, desc)
 }
 </script>
