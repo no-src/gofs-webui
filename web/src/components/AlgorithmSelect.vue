@@ -74,8 +74,10 @@ const focus = () => {
   console.log('focus')
 }
 
+const emit = defineEmits(['update-algorithm'])
 const handleChange = (value: string) => {
   console.log(`selected ${value}`)
+  emit('update-algorithm', value)
 }
 
 const props = defineProps(['value'])
