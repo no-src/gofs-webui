@@ -1,24 +1,5 @@
 <template>
-  <a-menu
-    v-model:selectedKeys="current.key"
-    mode="horizontal"
-    style="justify-content: flex-end; margin-bottom: 20px"
-  >
-    <a-sub-menu key="sub">
-      <template #icon>
-        <TranslationOutlined />
-      </template>
-      <template #title>{{ current.label }}</template>
-      <a-menu-item
-        v-for="locale in locales"
-        :key="locale.name"
-        @click="localeClick(locale.name, locale.desc)"
-      >
-        {{ locale.desc }}
-      </a-menu-item>
-    </a-sub-menu>
-  </a-menu>
-
+  <LocaleSelect />
   <a-form :model="config" :label-col="labelCol" :wrapper-col="wrapperCol">
     <a-form-item :label="t('config-label.source')">
       <a-input v-model:value="config.source" />
@@ -263,11 +244,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed, reactive, ref, toRaw } from 'vue'
-import { useI18n } from 'vue-i18n'
+import { reactive, toRaw } from 'vue'
 import AlgorithmSelect from '../components/AlgorithmSelect.vue'
-import { TranslationOutlined } from '@ant-design/icons-vue'
-import { useLocale } from '../stores/locale'
+import LocaleSelect from '../components/LocaleSelect.vue'
+import { useI18n } from 'vue-i18n'
 
 const config = reactive({
   source: 'rs://127.0.0.1:8105',
@@ -369,15 +349,5 @@ const wrapperCol = { span: 14 }
 
 function onReset(e: any) {
   console.log('reset')
-}
-
-const localeStore = useLocale()
-const locales = reactive(localeStore.all())
-const current = computed(() => {
-  return { key: [localeStore.get().name], label: localeStore.get().desc }
-})
-
-function localeClick(name: string, desc: string) {
-  localeStore.set(name, desc)
 }
 </script>
