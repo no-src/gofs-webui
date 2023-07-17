@@ -1,5 +1,4 @@
 <template>
-  <LocaleSelect />
   <a-form :model="config" :label-col="labelCol" :wrapper-col="wrapperCol">
     <a-form-item :label="t('config-label.source')">
       <a-input v-model:value="config.source" />
@@ -243,7 +242,6 @@
 <script setup lang="ts">
 import { reactive, toRaw } from 'vue'
 import AlgorithmSelect from '../components/AlgorithmSelect.vue'
-import LocaleSelect from '../components/LocaleSelect.vue'
 import { useI18n } from 'vue-i18n'
 
 const config = reactive({
