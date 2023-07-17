@@ -35,10 +35,7 @@
       <a-switch v-model:checked="config.force_checksum" />
     </a-form-item>
     <a-form-item :label="t('config-label.checksum_algorithm')">
-      <AlgorithmSelect
-        v-model:value="config.checksum_algorithm"
-        @update-algorithm="(v) => (config.checksum_algorithm = v)"
-      />
+      <AlgorithmSelect v-model:value="config.checksum_algorithm" />
     </a-form-item>
     <a-form-item :label="t('config-label.progress')">
       <a-switch v-model:checked="config.progress" />
