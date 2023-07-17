@@ -9,7 +9,7 @@ the below command to install `gofs-webui`.
 
 On Windows
 
-```bat
+```bash
 $ scripts\build.bat
 ```
 
