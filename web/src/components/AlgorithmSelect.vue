@@ -2,7 +2,7 @@
   <a-space>
     <a-select
       ref="select"
-      v-model:value="refValue"
+      v-model:value="algorithm"
       style="width: 120px"
       :options="options"
       @focus="focus"
@@ -70,16 +70,16 @@ const options = ref<SelectProps['options']>([
     label: 'fnv-1a-128'
   }
 ])
+const props = defineProps<{ value: string }>()
+const algorithm = ref(props.value)
+const emit = defineEmits<{ (e: 'update:value', value: string): void }>()
+
+const handleChange = (value: string) => {
+  console.log(`selected ${value}`)
+  emit('update:value', value)
+}
+
 const focus = () => {
   console.log('focus')
 }
-
-const emit = defineEmits(['update-algorithm'])
-const handleChange = (value: string) => {
-  console.log(`selected ${value}`)
-  emit('update-algorithm', value)
-}
-
-const props = defineProps(['value'])
-const refValue = ref(props.value)
 </script>
