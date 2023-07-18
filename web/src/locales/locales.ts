@@ -12,12 +12,17 @@ export class Locale {
   }
 }
 
-export const defaultLocale = new Locale('en', 'English')
-
 export const allLocales: Locale[] = [
   { name: 'en', desc: 'English' },
   { name: 'zh-CN', desc: '简体中文' }
 ]
+
+let current = allLocales.find((e) => e.name === navigator.language)
+if (!current) {
+  current = allLocales[0]
+}
+
+export const defaultLocale = new Locale(current.name, current.desc)
 
 export const i18n = createI18n<false>({
   legacy: false,
