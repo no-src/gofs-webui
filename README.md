@@ -29,7 +29,7 @@ You can use the [build-docker.sh](/scripts/build-docker.sh) script to build the 
 repository and `cd` to the root path of the repository first.
 
 ```bash
-$ ./scripts/build-docker.sh
+$ chmod +x ./scripts/build-docker.sh && ./scripts/build-docker.sh
 ```
 
 Or pull the docker image directly from [DockerHub](https://hub.docker.com/r/nosrc/gofs-webui) with the command below.
