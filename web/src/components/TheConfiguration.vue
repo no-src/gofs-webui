@@ -71,10 +71,10 @@
     </a-form-item>
     <a-form-item :label="t('config-label.log_level')">
       <a-radio-group v-model:value="config.log_level">
-        <a-radio value="0">DEBUG</a-radio>
-        <a-radio value="1">INFO</a-radio>
-        <a-radio value="2">WARN</a-radio>
-        <a-radio value="3">ERROR</a-radio>
+        <a-radio :value="0">DEBUG</a-radio>
+        <a-radio :value="1">INFO</a-radio>
+        <a-radio :value="2">WARN</a-radio>
+        <a-radio :value="3">ERROR</a-radio>
       </a-radio-group>
     </a-form-item>
     <a-form-item :label="t('config-label.log_file')">
