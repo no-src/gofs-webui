@@ -3,5 +3,6 @@
 #
 
 *.ico
+*.svg
 *.html
 assets
