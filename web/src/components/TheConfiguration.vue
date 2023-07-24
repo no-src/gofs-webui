@@ -25,7 +25,7 @@
       <a-switch v-model:checked="config.ignore_deleted" />
     </a-form-item>
     <a-form-item :label="t('config-label.chunk_size')">
-      <a-input-number v-model:value="config.chunk_size" />
+      <StorageInput v-model:value="config.chunk_size" />
     </a-form-item>
     <a-form-item :label="t('config-label.checkpoint_count')">
       <a-input-number v-model:value="config.checkpoint_count" />
@@ -40,7 +40,7 @@
       <a-switch v-model:checked="config.progress" />
     </a-form-item>
     <a-form-item :label="t('config-label.max_tran_rate')">
-      <a-input-number v-model:value="config.max_tran_rate" />
+      <StorageInput v-model:value="config.max_tran_rate" />
     </a-form-item>
     <a-form-item :label="t('config-label.dry_run')">
       <a-switch v-model:checked="config.dry_run" />
@@ -241,9 +241,10 @@
 
 <script setup lang="ts">
 import { reactive, toRaw } from 'vue'
-import AlgorithmSelect from '../components/AlgorithmSelect.vue'
 import { useI18n } from 'vue-i18n'
 import { defaultConfig } from '@/config/defaultConfig'
+import AlgorithmSelect from '@/components/AlgorithmSelect.vue'
+import StorageInput from '@/components/StorageInput.vue'
 
 const config = reactive(defaultConfig)
 
