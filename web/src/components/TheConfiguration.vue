@@ -93,20 +93,7 @@
       <a-switch v-model:checked="config.log_event" />
     </a-form-item>
     <a-form-item :label="t('config-label.log_sample_rate')">
-      <a-row>
-        <a-col :span="12">
-          <a-slider v-model:value="config.log_sample_rate" :min="0" :max="1" :step="0.01" />
-        </a-col>
-        <a-col :span="4">
-          <a-input-number
-            v-model:value="config.log_sample_rate"
-            :min="0"
-            :max="1"
-            :step="0.01"
-            style="margin-left: 16px"
-          />
-        </a-col>
-      </a-row>
+      <RateInput v-model:value="config.log_sample_rate" />
     </a-form-item>
     <a-form-item :label="t('config-label.log_format')">
       <a-radio-group v-model:value="config.log_format">
@@ -247,6 +234,7 @@ import AlgorithmSelect from '@/components/AlgorithmSelect.vue'
 import StorageInput from '@/components/StorageInput.vue'
 import TimespanInput from '@/components/TimespanInput.vue'
 import NumberInput from '@/components/NumberInput.vue'
+import RateInput from '@/components/RateInput.vue'
 
 const config = reactive(defaultConfig)
 
