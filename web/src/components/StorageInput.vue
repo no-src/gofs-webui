@@ -9,7 +9,7 @@
   </a-space>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 import { computed, ref } from 'vue'
 
 const props = defineProps<{ value: number }>()

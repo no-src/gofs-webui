@@ -28,7 +28,7 @@
       <StorageInput v-model:value="config.chunk_size" />
     </a-form-item>
     <a-form-item :label="t('config-label.checkpoint_count')">
-      <a-input-number v-model:value="config.checkpoint_count" />
+      <NumberInput v-model:value="config.checkpoint_count" />
     </a-form-item>
     <a-form-item :label="t('config-label.force_checksum')">
       <a-switch v-model:checked="config.force_checksum" />
@@ -52,16 +52,16 @@
       <a-switch v-model:checked="config.sync_delay" />
     </a-form-item>
     <a-form-item :label="t('config-label.sync_delay_events')">
-      <a-input-number v-model:value="config.sync_delay_events" />
+      <NumberInput v-model:value="config.sync_delay_events" />
     </a-form-item>
     <a-form-item :label="t('config-label.sync_delay_time')">
       <TimespanInput v-model:value="config.sync_delay_time" />
     </a-form-item>
     <a-form-item :label="t('config-label.sync_workers')">
-      <a-input-number v-model:value="config.sync_workers" />
+      <NumberInput v-model:value="config.sync_workers" />
     </a-form-item>
     <a-form-item :label="t('config-label.retry_count')">
-      <a-input-number v-model:value="config.retry_count" />
+      <NumberInput v-model:value="config.retry_count" />
     </a-form-item>
     <a-form-item :label="t('config-label.retry_wait')">
       <TimespanInput v-model:value="config.retry_wait" />
@@ -178,13 +178,13 @@
       <a-input v-model:value="config.users" />
     </a-form-item>
     <a-form-item :label="t('config-label.rand_user_count')">
-      <a-input-number v-model:value="config.rand_user_count" />
+      <NumberInput v-model:value="config.rand_user_count" />
     </a-form-item>
     <a-form-item :label="t('config-label.rand_user_len')">
-      <a-input-number v-model:value="config.rand_user_len" />
+      <NumberInput v-model:value="config.rand_user_len" />
     </a-form-item>
     <a-form-item :label="t('config-label.rand_pwd_len')">
-      <a-input-number v-model:value="config.rand_pwd_len" />
+      <NumberInput v-model:value="config.rand_pwd_len" />
     </a-form-item>
     <a-form-item :label="t('config-label.rand_perm')">
       <a-checkbox-group v-model:value="randPerm">
@@ -230,7 +230,7 @@
       <a-input v-model:value="config.task_client_labels" />
     </a-form-item>
     <a-form-item :label="t('config-label.task_client_max_worker')" v-if="config.task_client">
-      <a-input-number v-model:value="config.task_client_max_worker" />
+      <NumberInput v-model:value="config.task_client_max_worker" />
     </a-form-item>
     <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
       <a-button type="primary" @click="onSubmit">{{ t('btn.generate-config') }}</a-button>
@@ -246,6 +246,7 @@ import { defaultConfig } from '@/config/defaultConfig'
 import AlgorithmSelect from '@/components/AlgorithmSelect.vue'
 import StorageInput from '@/components/StorageInput.vue'
 import TimespanInput from '@/components/TimespanInput.vue'
+import NumberInput from '@/components/NumberInput.vue'
 
 const config = reactive(defaultConfig)
 
