@@ -55,7 +55,7 @@
       <a-input-number v-model:value="config.sync_delay_events" />
     </a-form-item>
     <a-form-item :label="t('config-label.sync_delay_time')">
-      <a-input v-model:value="config.sync_delay_time" />
+      <TimespanInput v-model:value="config.sync_delay_time" />
     </a-form-item>
     <a-form-item :label="t('config-label.sync_workers')">
       <a-input-number v-model:value="config.sync_workers" />
@@ -64,7 +64,7 @@
       <a-input-number v-model:value="config.retry_count" />
     </a-form-item>
     <a-form-item :label="t('config-label.retry_wait')">
-      <a-input v-model:value="config.retry_wait" />
+      <TimespanInput v-model:value="config.retry_wait" />
     </a-form-item>
     <a-form-item :label="t('config-label.retry_async')">
       <a-switch v-model:checked="config.retry_async" />
@@ -87,7 +87,7 @@
       <a-switch v-model:checked="config.log_flush" />
     </a-form-item>
     <a-form-item :label="t('config-label.log_flush_interval')">
-      <a-input v-model:value="config.log_flush_interval" />
+      <TimespanInput v-model:value="config.log_flush_interval" />
     </a-form-item>
     <a-form-item :label="t('config-label.log_event')">
       <a-switch v-model:checked="config.log_event" />
@@ -124,10 +124,10 @@
       <a-switch v-model:checked="config.daemon_pid" />
     </a-form-item>
     <a-form-item :label="t('config-label.daemon_delay')">
-      <a-input v-model:value="config.daemon_delay" />
+      <TimespanInput v-model:value="config.daemon_delay" />
     </a-form-item>
     <a-form-item :label="t('config-label.daemon_monitor_delay')">
-      <a-input v-model:value="config.daemon_monitor_delay" />
+      <TimespanInput v-model:value="config.daemon_monitor_delay" />
     </a-form-item>
     <a-form-item :label="t('config-label.kill_ppid')">
       <a-switch v-model:checked="config.kill_ppid" />
@@ -245,6 +245,7 @@ import { useI18n } from 'vue-i18n'
 import { defaultConfig } from '@/config/defaultConfig'
 import AlgorithmSelect from '@/components/AlgorithmSelect.vue'
 import StorageInput from '@/components/StorageInput.vue'
+import TimespanInput from '@/components/TimespanInput.vue'
 
 const config = reactive(defaultConfig)
 
