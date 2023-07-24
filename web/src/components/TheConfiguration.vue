@@ -157,7 +157,7 @@
       <a-switch v-model:checked="config.report" />
     </a-form-item>
     <a-form-item :label="t('config-label.session_connection')">
-      <a-input v-mode:value="config.session_connection" />
+      <a-input v-model:value="config.session_connection" />
     </a-form-item>
     <a-form-item :label="t('config-label.http3')">
       <a-switch v-model:checked="config.http3" />
@@ -187,7 +187,7 @@
       <a-input-number v-model:value="config.rand_pwd_len" />
     </a-form-item>
     <a-form-item :label="t('config-label.rand_perm')">
-      <a-checkbox-group v-model:value="config.rand_perm" @change="onRandPermChange">
+      <a-checkbox-group v-model:value="randPerm">
         <a-checkbox value="r" name="type">{{ t('rand-perm-enum.read') }}</a-checkbox>
         <a-checkbox value="w" name="type">{{ t('rand-perm-enum.write') }}</a-checkbox>
         <a-checkbox value="x" name="type">{{ t('rand-perm-enum.execute') }}</a-checkbox>
@@ -240,7 +240,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, toRaw } from 'vue'
+import { computed, reactive, toRaw } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { defaultConfig } from '@/config/defaultConfig'
 import AlgorithmSelect from '@/components/AlgorithmSelect.vue'
@@ -264,11 +264,14 @@ const onSubmit = () => {
   downloadLink.dispatchEvent(clickEvent)
 }
 
-function onRandPermChange(e: any) {
-  console.log(`rand perm change:${toRaw(e)}`)
-  config.rand_perm = e.join(',')
-  return false
-}
+let randPerm = computed({
+  get() {
+    return config.rand_perm.split('')
+  },
+  set(newRandPerm: string[]) {
+    config.rand_perm = newRandPerm.join('')
+  }
+})
 
 const { t } = useI18n()
 const labelCol = { style: { width: '350px' } }
