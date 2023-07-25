@@ -2,11 +2,10 @@
   <a-space>
     <a-select
       ref="select"
-      v-model:value="algorithm"
+      v-model:value="value"
       style="width: 120px"
       :options="options"
-      @focus="focus"
-      @change="handleChange"
+      @change="$emit('update:value', value)"
     >
     </a-select>
   </a-space>
@@ -71,15 +70,5 @@ const options = ref<SelectProps['options']>([
   }
 ])
 const props = defineProps<{ value: string }>()
-const algorithm = ref(props.value)
-const emit = defineEmits<{ (e: 'update:value', value: string): void }>()
-
-const handleChange = (value: string) => {
-  console.log(`selected ${value}`)
-  emit('update:value', value)
-}
-
-const focus = () => {
-  console.log('focus')
-}
+const value = ref(props.value)
 </script>
