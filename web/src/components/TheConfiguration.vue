@@ -51,10 +51,10 @@
     <a-form-item :label="t('config-label.sync_delay')">
       <a-switch v-model:checked="config.sync_delay" />
     </a-form-item>
-    <a-form-item :label="t('config-label.sync_delay_events')">
+    <a-form-item :label="t('config-label.sync_delay_events')" v-if="config.sync_delay">
       <NumberInput v-model:value="config.sync_delay_events" />
     </a-form-item>
-    <a-form-item :label="t('config-label.sync_delay_time')">
+    <a-form-item :label="t('config-label.sync_delay_time')" v-if="config.sync_delay">
       <TimespanInput v-model:value="config.sync_delay_time" />
     </a-form-item>
     <a-form-item :label="t('config-label.sync_workers')">
@@ -86,7 +86,7 @@
     <a-form-item :label="t('config-label.log_flush')">
       <a-switch v-model:checked="config.log_flush" />
     </a-form-item>
-    <a-form-item :label="t('config-label.log_flush_interval')">
+    <a-form-item :label="t('config-label.log_flush_interval')" v-if="config.log_flush">
       <TimespanInput v-model:value="config.log_flush_interval" />
     </a-form-item>
     <a-form-item :label="t('config-label.log_event')">
@@ -107,13 +107,13 @@
     <a-form-item :label="t('config-label.daemon')">
       <a-switch v-model:checked="config.daemon" />
     </a-form-item>
-    <a-form-item :label="t('config-label.daemon_pid')">
+    <a-form-item :label="t('config-label.daemon_pid')" v-if="config.daemon">
       <a-switch v-model:checked="config.daemon_pid" />
     </a-form-item>
-    <a-form-item :label="t('config-label.daemon_delay')">
+    <a-form-item :label="t('config-label.daemon_delay')" v-if="config.daemon">
       <TimespanInput v-model:value="config.daemon_delay" />
     </a-form-item>
-    <a-form-item :label="t('config-label.daemon_monitor_delay')">
+    <a-form-item :label="t('config-label.daemon_monitor_delay')" v-if="config.daemon">
       <TimespanInput v-model:value="config.daemon_monitor_delay" />
     </a-form-item>
     <a-form-item :label="t('config-label.kill_ppid')">
@@ -125,25 +125,25 @@
     <a-form-item :label="t('config-label.server')">
       <a-switch v-model:checked="config.server" />
     </a-form-item>
-    <a-form-item :label="t('config-label.server_addr')">
+    <a-form-item :label="t('config-label.server_addr')" v-if="config.server">
       <a-input v-model:value="config.server_addr" />
     </a-form-item>
-    <a-form-item :label="t('config-label.server_compress')">
+    <a-form-item :label="t('config-label.server_compress')" v-if="config.server">
       <a-switch v-model:checked="config.server_compress" />
     </a-form-item>
-    <a-form-item :label="t('config-label.manage')">
+    <a-form-item :label="t('config-label.manage')" v-if="config.server">
       <a-switch v-model:checked="config.manage" />
     </a-form-item>
-    <a-form-item :label="t('config-label.manage_private')">
+    <a-form-item :label="t('config-label.manage_private')" v-if="config.server && config.manage">
       <a-switch v-model:checked="config.manage_private" />
     </a-form-item>
-    <a-form-item :label="t('config-label.push_server')">
+    <a-form-item :label="t('config-label.push_server')" v-if="config.server">
       <a-switch v-model:checked="config.push_server" />
     </a-form-item>
-    <a-form-item :label="t('config-label.report')">
+    <a-form-item :label="t('config-label.report')" v-if="config.server && config.manage">
       <a-switch v-model:checked="config.report" />
     </a-form-item>
-    <a-form-item :label="t('config-label.session_connection')">
+    <a-form-item :label="t('config-label.session_connection')" v-if="config.server">
       <a-input v-model:value="config.session_connection" />
     </a-form-item>
     <a-form-item :label="t('config-label.http3')">
@@ -167,13 +167,13 @@
     <a-form-item :label="t('config-label.rand_user_count')">
       <NumberInput v-model:value="config.rand_user_count" />
     </a-form-item>
-    <a-form-item :label="t('config-label.rand_user_len')">
+    <a-form-item :label="t('config-label.rand_user_len')" v-if="config.rand_user_count > 0">
       <NumberInput v-model:value="config.rand_user_len" />
     </a-form-item>
-    <a-form-item :label="t('config-label.rand_pwd_len')">
+    <a-form-item :label="t('config-label.rand_pwd_len')" v-if="config.rand_user_count > 0">
       <NumberInput v-model:value="config.rand_pwd_len" />
     </a-form-item>
-    <a-form-item :label="t('config-label.rand_perm')">
+    <a-form-item :label="t('config-label.rand_perm')" v-if="config.rand_user_count > 0">
       <a-checkbox-group v-model:value="randPerm">
         <a-checkbox value="r" name="type">{{ t('rand-perm-enum.read') }}</a-checkbox>
         <a-checkbox value="w" name="type">{{ t('rand-perm-enum.write') }}</a-checkbox>
