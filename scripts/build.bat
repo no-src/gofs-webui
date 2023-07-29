@@ -3,7 +3,7 @@ pushd web
 call npm install
 call npm run build-only
 popd
-xcopy web\dist\* server\dist /E /Y
+xcopy web\dist webdist\dist /E /Y /I
 go build
 
 echo.

@@ -25,3 +25,4 @@ go.work
 bin/
 .run/
 gofs-webui
+webdist/dist

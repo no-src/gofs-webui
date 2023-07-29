@@ -1,2 +1,4 @@
+github.com/no-src/fserver v0.0.1 h1:7HEJ7Wm0USEGNb8jwk1Z55T1q8g1/xgGY1NFMr79WbM=
+github.com/no-src/fserver v0.0.1/go.mod h1:AM6o7XsG78CXtRy7IJ8OeKLn365bE2oKeM4ro5jx4nA=
 github.com/no-src/log v0.2.3 h1:lCJrWeMMuC2Wkp6CKEVylgllH+k4YAm0eRsFX9nVxaQ=
 github.com/no-src/log v0.2.3/go.mod h1:C58ahv0WdsBL3Yxi+v6wyUXzwqk7aEPN+/1ltOsdHXg=

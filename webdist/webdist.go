@@ -1,8 +1,8 @@
-package dist
+package webdist
 
 import "embed"
 
 // WebDist the web dist resource
 //
-//go:embed assets favicon.svg index.html
+//go:embed dist
 var WebDist embed.FS
