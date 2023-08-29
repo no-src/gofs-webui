@@ -15,7 +15,6 @@
     "progress": "显示进度条",
     "max_tran_rate": "最大传输速率",
     "dry_run": "演习模式",
-    "ssh_key": "SSH Key",
     "sync_delay": "延迟同步",
     "sync_delay_events": "延迟同步事件数",
     "sync_delay_time": "最大延迟同步时间",

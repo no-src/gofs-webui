@@ -15,7 +15,6 @@
     "progress": "Show Progress Bar",
     "max_tran_rate": "Maximum Transfer Rate",
     "dry_run": "Dry Run Mode",
-    "ssh_key": "SSH Key",
     "sync_delay": "Sync Delay",
     "sync_delay_events": "Sync Delay Events",
     "sync_delay_time": "Maximum Sync Delay Time",
