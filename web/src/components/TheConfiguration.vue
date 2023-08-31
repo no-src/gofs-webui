@@ -45,9 +45,6 @@
     <a-form-item :label="$t('config-label.dry_run')">
       <a-switch v-model:checked="config.dry_run" />
     </a-form-item>
-    <a-form-item :label="$t('config-label.ssh_key')">
-      <a-input v-model:value="config.ssh_key" />
-    </a-form-item>
     <a-form-item :label="$t('config-label.sync_delay')">
       <a-switch v-model:checked="config.sync_delay" />
     </a-form-item>
