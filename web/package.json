@@ -16,7 +16,7 @@
     "ant-design-vue": "^4.0.2",
     "pinia": "^2.1.6",
     "vue": "^3.3.4",
-    "vue-i18n": "^9.3.0-beta.26",
+    "vue-i18n": "^9.3.0-beta.27",
     "vue-router": "^4.2.4"
   },
   "devDependencies": {
