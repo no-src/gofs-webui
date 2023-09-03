@@ -45,6 +45,12 @@
     <a-form-item :label="$t('config-label.dry_run')">
       <a-switch v-model:checked="config.dry_run" />
     </a-form-item>
+    <a-form-item :label="$t('config-label.copy_link')">
+      <a-switch v-model:checked="config.copy_link" />
+    </a-form-item>
+    <a-form-item :label="$t('config-label.copy_unsafe_link')" v-if="config.copy_link">
+      <a-switch v-model:checked="config.copy_unsafe_link" />
+    </a-form-item>
     <a-form-item :label="$t('config-label.sync_delay')">
       <a-switch v-model:checked="config.sync_delay" />
     </a-form-item>
