@@ -4,7 +4,7 @@
 #git pull --no-rebase
 
 # update the last git commit
-echo -e "$(git rev-parse main)\c" >internal/version/commit
+echo -e "$(git rev-parse HEAD)\c" >internal/version/commit
 
 # set GOPROXY environment variable
 # export GOPROXY=https://goproxy.cn
@@ -19,76 +19,71 @@ cp -r web/dist webdist
 
 ############################## build-web ##############################
 
+export SOFT_RELEASE_GO_VERSION
+export SOFT_RELEASE_VERSION
+export SOFT_NAME="gofs-webui"
+export SOFT_PREFIX="$(echo $SOFT_NAME | sed 's/-/_/g')_"
+
+function init_version {
+  go build -v -o . ./...
+
+  SOFT_RELEASE_GO_VERSION=$(go version | awk '{print $3}')
+  SOFT_RELEASE_VERSION=$(./${SOFT_NAME} -v | awk 'NR==1 {print $3}')
+}
+
+function build_release {
+  # release path, for example, gofs_webui_go1.20.2_amd64_linux_v0.1.0
+  SOFT_RELEASE="${SOFT_PREFIX}${SOFT_RELEASE_GO_VERSION}_${GOARCH}_${GOOS}_${SOFT_RELEASE_VERSION}"
+
+  rm -rf "$SOFT_RELEASE"
+  mkdir "$SOFT_RELEASE"
+
+  # build
+  go build -v -o . ./...
+
+  if [ "$GOOS" == "windows" ]; then
+    mv ${SOFT_NAME}.exe "$SOFT_RELEASE/"
+    # windows release archive
+    zip -r "$SOFT_RELEASE.zip" "$SOFT_RELEASE"
+  else
+    mv ${SOFT_NAME} "$SOFT_RELEASE/"
+    # release archive
+    tar -zcvf "$SOFT_RELEASE.tar.gz" "$SOFT_RELEASE"
+  fi
+  rm -rf "$SOFT_RELEASE"
+}
+
+init_version
+
 ############################## linux-release ##############################
 
-# set go env for linux
+# set go env
 export GOOS=linux
 export GOARCH=amd64
 
-# build gofs-webui
-go build -v -o . ./...
-
-export GOFS_WEBUI_RELEASE_GO_VERSION=$(go version | awk '{print $3}')
-export GOFS_WEBUI_RELEASE_VERSION=$(./gofs-webui -v | awk 'NR==1 {print $3}')
-
-# release path, for example, gofs_webui_go1.20.2_amd64_linux_v0.1.0
-export GOFS_WEBUI_RELEASE="gofs_webui_${GOFS_WEBUI_RELEASE_GO_VERSION}_${GOARCH}_${GOOS}_${GOFS_WEBUI_RELEASE_VERSION}"
-
-rm -rf "$GOFS_WEBUI_RELEASE"
-mkdir "$GOFS_WEBUI_RELEASE"
-mv gofs-webui "$GOFS_WEBUI_RELEASE/"
-
-# linux release archive
-tar -zcvf "$GOFS_WEBUI_RELEASE.tar.gz" "$GOFS_WEBUI_RELEASE"
-
-rm -rf "$GOFS_WEBUI_RELEASE"
+build_release
 
 ############################## linux-release ##############################
 
 ############################# windows-release #############################
 
-# set go env for windows
 export GOOS=windows
 export GOARCH=amd64
 
-# build gofs-webui
-go build -v -o . ./...
-
-# release path, for example, gofs_webui_go1.20.2_amd64_windows_v0.1.0
-export GOFS_WEBUI_RELEASE="gofs_webui_${GOFS_WEBUI_RELEASE_GO_VERSION}_${GOARCH}_${GOOS}_${GOFS_WEBUI_RELEASE_VERSION}"
-
-mkdir "$GOFS_WEBUI_RELEASE"
-mv gofs-webui.exe "$GOFS_WEBUI_RELEASE/"
-
-# windows release archive
-zip -r "$GOFS_WEBUI_RELEASE.zip" "$GOFS_WEBUI_RELEASE"
-
-rm -rf "$GOFS_WEBUI_RELEASE"
+build_release
 
 ############################# windows-release #############################
 
 ############################## macOS-release ##############################
 
-# set go env for macOS
 export GOOS=darwin
 export GOARCH=amd64
 
-# build gofs-webui
-go build -v -o . ./...
-
-# release path, for example, gofs_webui_go1.20.2_amd64_darwin_v0.1.0
-export GOFS_WEBUI_RELEASE="gofs_webui_${GOFS_WEBUI_RELEASE_GO_VERSION}_${GOARCH}_${GOOS}_${GOFS_WEBUI_RELEASE_VERSION}"
-
-rm -rf "$GOFS_WEBUI_RELEASE"
-mkdir "$GOFS_WEBUI_RELEASE"
-mv gofs-webui "$GOFS_WEBUI_RELEASE/"
-
-# macOS release archive
-tar -zcvf "$GOFS_WEBUI_RELEASE.tar.gz" "$GOFS_WEBUI_RELEASE"
-
-rm -rf "$GOFS_WEBUI_RELEASE"
+build_release
 
 ############################## macOS-release ##############################
 
 # reset commit file
 echo -e "\c" >internal/version/commit
+
+ls -alh | grep ${SOFT_PREFIX}
