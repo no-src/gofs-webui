@@ -14,7 +14,7 @@ ARG GOPROXY
 ARG CGO_ENABLED=0
 
 COPY . .
-COPY --from=web-dist /webwork/dist webdist
+COPY --from=web-dist /webwork/dist webdist/dist
 
 RUN echo $(git rev-parse HEAD) >internal/version/commit
 
