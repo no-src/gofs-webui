@@ -21,8 +21,8 @@ cp -r web/dist webdist
 
 export SOFT_RELEASE_GO_VERSION
 export SOFT_RELEASE_VERSION
-export SOFT_NAME="gofs_webui"
-export SOFT_PREFIX="${SOFT_NAME}_"
+export SOFT_NAME="gofs-webui"
+export SOFT_PREFIX="$(echo $SOFT_NAME | sed 's/-/_/g')_"
 
 function init_version {
   go build -v -o . ./...
