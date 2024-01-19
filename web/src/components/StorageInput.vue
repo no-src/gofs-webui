@@ -3,7 +3,7 @@
     <a-input-number
       v-model:value="value"
       :addon-after="tip"
-      @change="$emit('update:value', value)"
+      @change="$emit('update:value', value.toString())"
       min="0"
     />
   </a-space>
@@ -12,19 +12,20 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 
-const props = defineProps<{ value: number }>()
+const props = defineProps<{ value: string }>()
 const value = ref(props.value)
 const KB = 1024
 const MB = KB * 1024
 const GB = MB * 1024
 
 const tip = computed(() => {
-  if (value.value >= GB) {
-    return `Byte ${toFixed(value.value / GB)}GB`
-  } else if (value.value >= MB) {
-    return `Byte ${toFixed(value.value / MB)}MB`
-  } else if (value.value >= KB) {
-    return `Byte ${toFixed(value.value / KB)}KB`
+  const size = Number(value.value)
+  if (size >= GB) {
+    return `Byte ${toFixed(size / GB)}GB`
+  } else if (size >= MB) {
+    return `Byte ${toFixed(size / MB)}MB`
+  } else if (size >= KB) {
+    return `Byte ${toFixed(size / KB)}KB`
   } else {
     return `Byte`
   }
