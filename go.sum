@@ -1,4 +1,8 @@
 github.com/no-src/fserver v0.0.3 h1:jbanakX7Gigy9SveUaqbaSskybvCF2a+2lHdf4Mzuc0=
 github.com/no-src/fserver v0.0.3/go.mod h1:UFilCUVjvC7aD7EnDPee6vqnNodZmhgiAsFM1vYPuGo=
-github.com/no-src/log v0.3.1 h1:HvozFJQwRicaCThaRztVNOACR01jMiK8Upn4eU7lyps=
-github.com/no-src/log v0.3.1/go.mod h1:AG2AiKsnJpZQHmJ24waj6Bi0xHaBEPXiFl1yYpHzLJQ=
+github.com/no-src/log v0.3.2 h1:vNlvZI5GVQltV2qnj6tjlARcjVPGtBJelPVMhqFRR0k=
+github.com/no-src/log v0.3.2/go.mod h1:4eDLORoI7qCN75WkNOG/rJ5h1cCEHogRcTreHuIKW/w=
+gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405 h1:yhCVgyC4o1eVCa2tZl7eS0r+SDo693bJlVdllGtEeKM=
+gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
+gopkg.in/yaml.v3 v3.0.1 h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA=
+gopkg.in/yaml.v3 v3.0.1/go.mod h1:K4uyk7z7BCEPqu6E+C64Yfv1cQ7kz7rIZviUmN+EgEM=
